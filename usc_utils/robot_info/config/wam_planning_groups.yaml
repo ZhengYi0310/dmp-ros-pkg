@@ -1,0 +1,40 @@
+## This file should be loaded under <robot description>_planning
+
+## the definition of each group
+groups:
+
+  - name: RIGHT_ARM
+    joints:
+      right_wam/base_yaw_joint
+      right_wam/shoulder_pitch_joint
+      right_wam/shoulder_yaw_joint
+      right_wam/elbow_pitch_joint
+      right_wam/wrist_yaw_joint
+      right_wam/wrist_pitch_joint
+      right_wam//palm_yaw_joint
+    links: 
+      right_wam/shoulder_yaw_link
+      right_wam/shoulder_pitch_link
+      right_wam/upper_arm_link
+      right_wam/forearm_link
+      right_wam/wrist_yaw_link
+      right_wam/wrist_pitch_link
+      right_wam/wrist_palm_link
+
+ - name: LEFT_ARM
+    joints:
+      left_wam/base_yaw_joint
+      left_wam/shoulder_pitch_joint
+      left_wam/shoulder_yaw_joint
+      left_wam/elbow_pitch_joint
+      left_wam/wrist_yaw_joint
+      left_wam/wrist_pitch_joint
+      left_wam//palm_yaw_joint
+    links: 
+      left_wam/shoulder_yaw_link
+      left_wam/shoulder_pitch_link
+      left_wam/upper_arm_link
+      left_wam/forearm_link
+      left_wam/wrist_yaw_link
+      left_wam/wrist_pitch_link
+      left_wam/wrist_palm_link

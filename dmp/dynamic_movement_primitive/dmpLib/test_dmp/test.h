@@ -1,0 +1,99 @@
+/*************************************************************************
+	> File Name: test.h
+	> Author: 
+	> Mail: 
+	> Created Time: Thu 03 Nov 2016 02:43:28 PM PDT
+ ************************************************************************/
+
+#ifndef _TEST_H
+#define _TEST_H
+
+// system includes 
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <unistd.h>
+
+// local includes 
+#include <dmp_lib/logger.h>
+#include <dmp_lib/nc2010_dynamic_movement_primitive.h>
+
+#include "test_dynamic_movement_primitive.h"
+#include "test_trajectory.h"
+#include "test_data.h"
+#include "nc2010_test.h"
+
+namespace test_dmp
+{
+    class Test  
+    {
+        public:
+            static bool test(const std::string base_directory = "", const bool regenerate_result_data = false);
+
+        private:
+            Test() {};
+            virtual ~Test() {};
+    };
+
+    inline bool Test::test(const std::string base_directory, const bool regenerate_result_data)
+    {
+        TestData testdata;
+        if (!testdata.initialize(TestData::QUAT_TEST))
+        {
+            dmp_lib::Logger::logPrintf("Could not initialize test data.");
+            return false;
+        }
+
+        for (int i = 0; i < testdata.getNumTests(); ++i)
+        {
+            dmp_lib::NC2010DMP dmp;
+            if (!test_dmp::NC2010Test::initialize(dmp, testdata))
+            {
+                dmp_lib::Logger::logPrintf("Could not initialize NC2010 DMP. Test failed.", dmp_lib::Logger::ERROR);
+                return false;
+            }
+
+            std::vector<double> goaloffsets;
+            if (!testdata.getGoal(i, goaloffsets))
+            {
+                dmp_lib::Logger::logPrintf("Test data invalid.", dmp_lib::Logger::ERROR);
+                return false;
+            }
+    
+            double duration_scale;
+            if (!testdata.getDurationScale(i, duration_scale))
+            {
+                dmp_lib::Logger::logPrintf("Test data invalid.", dmp_lib::Logger::ERROR);
+                return false;
+            }
+    
+            double error_threshold;
+            if (!testdata.getErrorThreshold(i, error_threshold))
+            {
+                dmp_lib::Logger::logPrintf("Test data invalid.", dmp_lib::Logger::ERROR);
+                return false;
+            }
+
+            if (!test_dmp::TestDMP<dmp_lib::NC2010DMP>::test(dmp, std::string(testdata.getTestTrajectoryFileName()), std::string("_nc2010"), testdata.getNumDataPoints(), goaloffsets, duration_scale, error_threshold, i, base_directory, regenerate_result_data))
+            {
+                dmp_lib::Logger::logPrintf("NC2010 dmp test failed.", dmp_lib::Logger::ERROR);
+                return false;
+            }
+        }
+
+        if (!testdata.initialize(TestData::SIMPLE_TEST))
+        {
+            dmp_lib::Logger::logPrintf("Could not initialize test data.");
+            return false;
+        } 
+
+        if (!test_dmp::TestTrajectory::test("test_trajectory_class", testdata, base_directory))
+        {
+            dmp_lib::Logger::logPrintf("Trajectory test failed.", dmp_lib::Logger::ERROR);
+            return false;
+        }  
+        dmp_lib::Logger::logPrintf("Test finished successful.", dmp_lib::Logger::INFO);
+        return true;
+    }
+}
+#endif

@@ -1,0 +1,19 @@
+<package>
+  <name>task_msgs</name>
+  <version>0.0.0</version>
+  <description>the task_msgs package</description>
+  <author>Peter Pastor</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/dynamic_movement_primitives</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+
+  <run_depend>message_runtime</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+</package>
+
+

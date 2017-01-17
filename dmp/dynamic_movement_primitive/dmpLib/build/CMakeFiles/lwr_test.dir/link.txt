@@ -1,0 +1,1 @@
+/usr/bin/c++   -g    CMakeFiles/lwr_test.dir/test_lwr/test_locally_weigthed_regression.o  -o ../test/lwr_test  -L../lwrLib/lib -rdynamic ../lib/liblwr.a -Wl,-rpath,../lwrLib/lib 

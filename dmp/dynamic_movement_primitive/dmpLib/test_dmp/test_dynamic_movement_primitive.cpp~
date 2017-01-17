@@ -1,0 +1,34 @@
+/*************************************************************************
+	> File Name: test_dynamic_movement_primitive.cpp
+	> Author: Yi Zheng 
+	> Mail: hczhengcq@gmail.com
+	> Created Time: Thu 03 Nov 2016 11:44:08 AM PDT
+ ************************************************************************/
+
+// local includes
+#include "test.h"
+
+int main(int argc, char** argv)
+{
+    std::string base_directory = "/home/yzheng/yzheng_ws/src/dmp/dynamic_movement_primitive/dmpLib/test";
+    bool regenerate_result_data = false;
+
+    for(int i = 0; i < argc; i++)
+    {
+        std::string generate_test_data = "-g";
+        if(generate_test_data.compare(argv[i]) == 0)
+        {        
+            dmp_lib::Logger::logPrintf("Regenerating test data.", dmp_lib::Logger::INFO);
+            regenerate_result_data = true;
+        }
+    }
+    
+    if(test_dmp::Test::test(base_directory, regenerate_result_data))
+    {
+        //dmp_lib::Logger::logPrintf("Test finished successful.", dmp_lib::Logger::INFO);
+        return -1;
+    } 
+    //dmp_lib::Logger::logPrintf("test failed !");
+    return 0;
+}
+

@@ -1,0 +1,19 @@
+<package>
+  <name>quadprog</name>
+  <version>0.0.0</version>
+  <description>the quadprog package</description>
+  <author>Luca Di Gaspero, Eric Moyer (ROS package maintained by Mrinal Kalakrishnan)</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>LGPL</license>
+  <url>http://ros.org/wiki/quadprog</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/include -L${prefix}/lib -lquadprog"/>
+  </export>
+
+
+</package>
+
+

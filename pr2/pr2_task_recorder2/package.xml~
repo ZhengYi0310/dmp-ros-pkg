@@ -1,0 +1,18 @@
+<package>
+  <name>pr2_task_recorder2</name>
+  <version>0.0.0</version>
+  <description>the pr2_task_recorder2 package</description>
+  <author>Peter Pastor, Mrinal Kalakrishnan</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <author>Mrinal Kalakrishnan</author>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/dynamic_movement_primitives</url>
+
+  <depend package="roscpp"/>
+  <depend package="task_recorder2"/>
+  <depend package="task_recorder2_utilities"/>
+  <depend package="task_recorder2_msgs"/>
+
+</package>
+
+

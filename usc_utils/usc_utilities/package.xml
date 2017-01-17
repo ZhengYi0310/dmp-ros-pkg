@@ -1,0 +1,56 @@
+<package>
+  <name>usc_utilities</name>
+  <version>0.0.0</version>
+  <description>The usc_utilities package</description>
+
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <author>Mrinal Kalakrishnan</author>
+  <license>BSD</license>
+  <!-- <review status="unreviewed" notes=""/> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rosconsole</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>orocos_kdl</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>kdl_parser</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>rosbag</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>rostest</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>trajectory_msgs</build_depend>
+  <build_depend>bspline</build_depend>
+
+  <run_depend>rosconsole</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>orocos_kdl</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>kdl_parser</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>roslib</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>rostest</run_depend>
+  <run_depend>trajectory_msgs</run_depend>
+  <run_depend>bspline</run_depend>
+  
+  
+  <!-- <depend package="bspline"/> -->
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lusc_utilities -ltinyxml"/>
+  </export>
+
+</package>
+
+

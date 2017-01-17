@@ -1,0 +1,83 @@
+cmake_minimum_required(VERSION 2.4.6)
+project(dynamic_movement_primitive_utilities)
+
+# Set the build type.  Options are:
+#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
+#  Debug          : w/ debug symbols, w/o optimization
+#  Release        : w/o debug symbols, w/ optimization
+#  RelWithDebInfo : w/ debug symbols, w/ optimization
+#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
+#set(ROS_BUILD_TYPE RelWithDebInfo)
+
+#rosbuild_init()
+
+#set the default path for built executables to the "bin" directory
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+#set the default path for built libraries to the "lib" directory
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+#rosbuild_genmsg()
+#rosbuild_gensrv()
+
+#common commands for building c++ executables and libraries
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rosbag
+  geometry_msgs
+  sensor_msgs
+  usc_utilities
+  visualization_utilities
+  inverse_kinematics
+  robot_info
+  filters
+  dynamic_movement_primitive
+  cmake_modules
+)
+
+find_package(Boost REQUIRED COMPONENTS thread signals system filesystem)
+include_directories(${Boost_INCLUDE_DIRS})
+add_definitions(${Boost_DEFINITIONS})
+
+find_package(Eigen REQUIRED)
+include_directories(${Eigen_INCLUDE_DIRS})
+
+find_package(Eigen3 REQUIRED)
+include_directories(${Eigen3_INCLUDE_DIRS})
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+catkin_package(INCLUDE_DIRS include
+               LIBRARIES ${PROJECT_NAME}
+               CATKIN_DEPENDS roscpp rosbag geometry_msgs sensor_msgs usc_utilities visualization_utilities inverse_kinematics robot_info filters dynamic_movement_primitive cmake_modules 
+               DEPENDS Eigen Eigen3 Boost)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
+
+
+add_library(${PROJECT_NAME}
+  src/dynamic_movement_primitive_utilities.cpp
+  src/dynamic_movement_primitive_learner_utilities.cpp
+  src/dynamic_movement_primitive_controller_client.cpp
+  src/trajectory_utilities.cpp	
+)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} ${Eigen3_LIBRARIES})
+
+catkin_add_gtest(dynamic_movement_primitive_utilities_test test/dynamic_movement_primitive_utilities_test_1.cpp)
+target_link_libraries(dynamic_movement_primitive_utilities_test ${PROJECT_NAME} gtest ${catkin_LIBRARIES})
+add_dependencies(dynamic_movement_primitive_utilities_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+
+#rosbuild_add_executable(dynamic_movement_primitive_utilities_test
+#  test/dynamic_movement_primitive_utilities_test.cpp
+#)
+
+#rosbuild_declare_test(dynamic_movement_primitive_utilities_test)
+#target_link_libraries(dynamic_movement_primitive_utilities_test gtest)
+#target_link_libraries(dynamic_movement_primitive_utilities_test ${PROJECT_NAME})
+#rosbuild_add_rostest(launch/arm_dynamic_movement_primitive_utilities_test.test)
+
+# rosbuild_add_rostest(launch/pr2_dynamic_movement_primitive_utilities_test.test)

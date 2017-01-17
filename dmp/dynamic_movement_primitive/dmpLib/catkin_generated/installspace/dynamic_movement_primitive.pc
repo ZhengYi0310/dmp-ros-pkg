@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: dynamic_movement_primitive
+Description: Description of dynamic_movement_primitive
+Version: 0.0.0
+Cflags: -I/usr/local/include -I/usr/include/eigen3 -I/usr/include
+Libs: -L/usr/local/lib -ldynamic_movement_primitive -ldmp++ -llwr -llocally_weighted_regression -l:/usr/lib/x86_64-linux-gnu/libboost_thread.so -l:/usr/lib/x86_64-linux-gnu/libboost_signals.so -l:/usr/lib/x86_64-linux-gnu/libboost_system.so -l:/usr/lib/x86_64-linux-gnu/libboost_filesystem.so -l:/usr/lib/x86_64-linux-gnu/libpthread.so
+Requires: cmake_modules message_runtime roscpp usc_utilities rosbag sensor_msgs std_msgs

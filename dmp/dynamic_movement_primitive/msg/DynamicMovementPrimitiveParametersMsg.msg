@@ -1,0 +1,6 @@
+dynamic_movement_primitive/TimeMsg initial_time
+float64 teaching_duration
+float64 execution_duration
+float64 cutoff
+int32 type
+int32 id

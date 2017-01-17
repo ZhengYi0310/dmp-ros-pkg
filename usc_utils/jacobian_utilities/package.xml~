@@ -1,0 +1,19 @@
+<package>
+  <name>jacobian_utilities</name>
+  <version>0.0.0</version>
+  <description>the jacobian_utilities package</description>
+  <author>Ludovic Righetti</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/jacobian_utilities</url>
+
+  <depend package="robot_info"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -ljacobian_utilities"/>
+  </export>
+
+
+</package>
+
+

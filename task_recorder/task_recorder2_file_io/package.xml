@@ -1,0 +1,26 @@
+<package>
+  <name>task_recorder2_file_io</name>
+  <version>0.0.0</version>
+  <description>The task_recorder2_file_io package</description>
+
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <author>Peter Pastor</author>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/task_recorder2</url>
+
+
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rosbag</build_depend>
+  <build_depend>task_recorder2_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>task_recorder2_msgs</run_depend>
+
+</package>
+
+

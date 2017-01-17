@@ -1,0 +1,2 @@
+/usr/bin/ar cr ../lib/liblwr.a  CMakeFiles/lwr.dir/src/lwrLib/lwr.o CMakeFiles/lwr.dir/src/lwrLib/lwr_parameters.o CMakeFiles/lwr.dir/src/lwrLib/logger.o
+/usr/bin/ranlib ../lib/liblwr.a

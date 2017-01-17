@@ -1,0 +1,37 @@
+<package>
+  <name>dynamic_movement_primitive</name>
+  <version>0.0.0</version>
+  <description>the dynamic_movement_primitive package</description>
+  <author>Peter Pastor, Mrinal Kalakrishnan</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <author>Mrinal Kalakrishnan</author>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/dynamic_movement_primitives</url>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>roscpp</build_depend>
+  <build_depend>usc_utilities</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>rosbag</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>usc_utilities</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+  
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/dmpLib/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -ldynamic_movement_primitive -ldmp++"/>
+  </export>
+  
+</package>
+
+

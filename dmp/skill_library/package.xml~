@@ -1,0 +1,41 @@
+<package>
+  <name>skill_library</name>
+  <version>0.0.0</version>
+  <description>the skill_library package</description>
+  <author>Peter Pastor</author>
+  <license>BSD</license>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <url>http://ros.org/wiki/dynamic_movement_primitive_utilities</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rosbag</build_depend>
+  <build_depend>task_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>usc_utilities</build_depend>
+  <build_depend>dynamic_movement_primitive</build_depend>
+  <build_depend>dynamic_movement_primitive_utilities</build_depend>
+  <build_depend>robot_info</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>task_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>usc_utilities</run_depend>
+  <run_depend>dynamic_movement_primitive</run_depend>
+  <run_depend>dynamic_movement_primitive_utilities</run_depend>
+  <run_depend>robot_info</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>cmake_modules</run_depend>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lskill_library_client"/>
+  </export>
+    
+</package>
+
+

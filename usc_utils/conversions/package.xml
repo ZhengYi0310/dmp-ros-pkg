@@ -1,0 +1,28 @@
+<package>
+  <name>conversions</name>
+  <version>0.0.0</version>
+  <description>the conversions package</description>
+  <author>Mrinal Kalakrishnan</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/conversions</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>orocos_kdl</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>cmake_modules</build_depend>
+
+  <run_depend>orocos_kdl</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>cmake_modules</run_depend>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib"/>
+  </export>
+
+</package>
+
+
