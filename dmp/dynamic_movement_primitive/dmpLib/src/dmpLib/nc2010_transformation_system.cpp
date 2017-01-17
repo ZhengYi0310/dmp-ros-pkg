@@ -30,8 +30,8 @@ namespace dmp_lib
         Logger::logPrintf("NC2010TransformationSystem assignment.", Logger::DEBUG);
 
         // first assign all memeber variables
-        (Utilities<NC2010TSParam>::assign(parameters_, nc2010ts.parameters_));
-        (Utilities<NC2010TSState>::assign(states_, nc2010ts.states_));
+        assert(Utilities<NC2010TSParam>::assign(parameters_, nc2010ts.parameters_));
+        assert(Utilities<NC2010TSState>::assign(states_, nc2010ts.states_));
 
         // then assign all base class variables
         TransformationSystemBase::parameters_.clear();

@@ -31,7 +31,7 @@ class ClmcFile:
     
             #get the names and units
             temp = my_file.readline().split()
-            for i in range(0, cols-1) :
+            for i in range(0, cols) :
                 self.names[(temp[2*i])] = i
                 self.units.append(temp[2*i+1])
             #get all of the data
@@ -59,9 +59,9 @@ class ClmcFile:
 
         return data.transpose(), True
 
-filename = '/home/yzheng/yzheng_ws/src/dmp/dynamic_movement_primitive_utilities/test/data/test_rollout_joint_demonstration.clmc'
+filename = '/home/yzheng/yzheng_ws/src/dmp/dynamic_movement_primitive_utilities/test/data/test_rollout_joint_reproduction_test_2.clmc'
 clmc_parser = ClmcFile()
 
 clmc_parser.read(filename)
-names = "R_SFE"
-print clmc_parser.getVariables(names)[0].transpose()
+names = "R_WAA"
+print clmc_parser.data[1]

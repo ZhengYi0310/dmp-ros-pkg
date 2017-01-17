@@ -24,10 +24,10 @@ namespace dmp_lib
         Logger::logPrintf("NC2010DynamicMovementPrimitive assignment.", Logger::DEBUG);
 
         // first assign all member variables 
-        (Utilities<NC2010DMPParam>::assign(parameters_, nc2010dmp.parameters_));
-        (Utilities<NC2010DMPState>::assign(state_, nc2010dmp.state_));
-        (Utilities<NC2010TS>::assign(transformation_systems_, nc2010dmp.transformation_systems_));
-        (Utilities<NC2010CS>::assign(canonical_system_, nc2010dmp.canonical_system_));
+        assert(Utilities<NC2010DMPParam>::assign(parameters_, nc2010dmp.parameters_));
+        assert(Utilities<NC2010DMPState>::assign(state_, nc2010dmp.state_));
+        assert(Utilities<NC2010TS>::assign(transformation_systems_, nc2010dmp.transformation_systems_));
+        assert(Utilities<NC2010CS>::assign(canonical_system_, nc2010dmp.canonical_system_));
 
         // then assign base class variables 
         DynamicMovementPrimitiveBase::parameters_ = parameters_;
@@ -50,10 +50,10 @@ namespace dmp_lib
                                                     NC2010CSPtr& canonical_system)
     {
         // first set all member variables 
-        (Utilities<NC2010DMPParam>::assign(parameters_, parameters));
-        (Utilities<NC2010DMPState>::assign(state_, state));
-        (Utilities<NC2010TS>::assign(transformation_systems_, transformation_systems));
-        (Utilities<NC2010CS>::assign(canonical_system_, canonical_system));
+        assert(Utilities<NC2010DMPParam>::assign(parameters_, parameters));
+        assert(Utilities<NC2010DMPState>::assign(state_, state));
+        assert(Utilities<NC2010TS>::assign(transformation_systems_, transformation_systems));
+        assert(Utilities<NC2010CS>::assign(canonical_system_, canonical_system));
 
         // then initialize base class variables 
         vector<TSBasePtr> base_transformation_systems;

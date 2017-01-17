@@ -32,7 +32,7 @@ LWR& LWR::operator=(const LWR& lwr_model)
   Logger::logPrintf("LWR assignment.", Logger::DEBUG);
 
   // assign memeber variables
-  (Utilities<LWRParameters>::assign(parameters_, lwr_model.parameters_));
+  assert(Utilities<LWRParameters>::assign(parameters_, lwr_model.parameters_));
   initialized_ = lwr_model.initialized_;
   return *this;
 }
@@ -46,7 +46,7 @@ bool LWR::initialize(const LWRParamPtr parameters)
   }
   // copy the content of parameters
   Logger::logPrintf(initialized_, "LWR model already initialized. Re-initializing...", Logger::WARN);
-  (Utilities<LWRParameters>::assign(parameters_, parameters));
+  assert(Utilities<LWRParameters>::assign(parameters_, parameters));
   return (initialized_ = true);
 }
 

@@ -46,7 +46,7 @@ bool LWR::initialize(const LWRParamPtr parameters)
   }
   // copy the content of parameters
   Logger::logPrintf(initialized_, "LWR model already initialized. Re-initializing...", Logger::WARN);
-  assert(Utilities<LWRParameters>::assign(parameters_, parameters));
+  (Utilities<LWRParameters>::assign(parameters_, parameters));
   return (initialized_ = true);
 }
 

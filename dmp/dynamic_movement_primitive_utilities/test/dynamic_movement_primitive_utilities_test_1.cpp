@@ -62,10 +62,37 @@ TEST(dmp_learner_tests, learnJointSpaceDMP)
     string abs_demo_joint_file_name = package_path + rel_demonstration_joint_file_name;
     EXPECT_TRUE(trajectory.writeToCLMCFile(abs_demo_joint_file_name));
 
+    /*! // access the trajectory postions
+    ROS_INFO("START PRINTING");
+    for (int j = 0; j <= 20; j++)
+    {
+        Eigen::VectorXd trajectory_positions;
+        trajectory.getTrajectoryPosition(j, trajectory_positions);
+        // see the trajectory positions matrix 
+        for ( int i = 0; i < trajectory_positions.size(); i++ )
+        {
+            std::cout << trajectory_positions[i] << std::endl;
+        }
+    } 
+    ROS_INFO("END PRINT"); */
+
+    /*! // access the trajectory velocities 
+    ROS_INFO("STARTING PRINTING");
+    for (int j = 0; j <= 20; j++)
+    {
+        for (int i = 0; i < trajectory.getDimension(); i++)
+        {
+            double velocity;
+            trajectory.getTrajectoryAcceleration(j, i, velocity);
+            std::cout << velocity << std::endl;
+        }
+    }
+    ROS_INFO("END PRINTING"); */
+
     bool result = DynamicMovementPrimitiveLearner<dmp::NC2010DMP>::learnJointSpaceDMP(nc2010_dmp, node_handle, abs_bag_file_name_joint_states, robot_part_names);
     EXPECT_TRUE(result);
 
-    /*! string abs_bag_file_name_dmp = package_path + rel_joint_space_dmp_bag_file_name;
+    string abs_bag_file_name_dmp = package_path + rel_joint_space_dmp_bag_file_name;
     EXPECT_TRUE(dmp::NC2010DynamicMovementPrimitive::writeToDisc(nc2010_dmp, abs_bag_file_name_dmp));
 
     dmp_lib::NC2010DMPPtr nc2010_dmp_copy;
@@ -95,12 +122,12 @@ TEST(dmp_learner_tests, learnJointSpaceDMP)
     ROS_VERIFY(nc2010_dmp_copy->getInitialGoal(new_goal));
     for (int i = 0; i < nc2010_dmp_copy->getNumDimensions(); ++i)
     {
-        new_goal(i) = new_goal(i) + i;
+        new_goal(i) = new_goal(i) + i + 1;
     }
     EXPECT_TRUE(nc2010_dmp_copy->changeGoal(new_goal));
     dmp_lib::Trajectory rollout_test_2;
-    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout_test_2, initial_duration, 2000));
-    EXPECT_TRUE(rollout_test_2.writeToCLMCFile(package_path + rel_rollout_joint_file_name_test_2)); */
+    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout_test_2, initial_duration * 3, 4000));
+    EXPECT_TRUE(rollout_test_2.writeToCLMCFile(package_path + rel_rollout_joint_file_name_test_2)); 
 }
 
 /*! TEST(dmp_learner_utilities, learnCartesianSpaceDMP)
@@ -164,7 +191,7 @@ TEST(dmp_learner_test, learnCartesianAndJointSpaceDMP)
     dmp_lib::Trajectory rollout;
     EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout, initial_duration, 1000));
     EXPECT_TRUE(rollout.writeToCLMCFile(package_path + rel_rollout_cartesian_and_joint_file_name));
-} */
+} */ 
 
 int main(int argc, char* argv[])
 {

@@ -19,6 +19,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <fstream>
 
 // local include
 #include "dmp_lib/trajectory.h"
@@ -685,6 +686,18 @@ bool Trajectory::writeToCLMCFile(const std::string& file_name,
     }
   }
 
+  /*! // access positions, velocities, and accelerations
+  std::cout << num_dimensions / POS_VEL_ACC << std::endl; 
+  Logger::logPrintf("START PRINTING", Logger::INFO);
+  for (int i = 0; i <= 20; i++)
+  {
+    for (int j = 0; j < num_dimensions / POS_VEL_ACC; j++)
+    {
+        std::cout << (*buffer)[i][j * POS_VEL_ACC + ACC] << std::endl;
+    }
+  }
+  Logger::logPrintf("END PRINTING", Logger::INFO); */
+
   // write the the (*buffer) size, the number of columns, the sampling time, the column names and units
   if (sampling_frequency_ <= 0.0)
   {
@@ -784,16 +797,16 @@ bool Trajectory::writeToCLMCFile(const std::string& file_name,
   fprintf(fp, "\n");
 
   // convert little-endian to big-endian
-  //int aux;
-  //Logger::logPrintf("Byteswap active.", Logger::DEBUG);
-  //for (int i = 0; i < index_to_last_trajectory_point_; ++i)
-  //{
-  //  for (int j = 0; j < num_dimensions; ++j)
-  //  {
-  //    aux = LONGSWAP(*((int *) &((*buffer)[i][j])));
-  //    (*buffer)[i][j] = *((float *)&aux);
-  //  }
-  //}
+  int aux;
+  Logger::logPrintf("Byteswap active.", Logger::DEBUG);
+  for (int i = 0; i < index_to_last_trajectory_point_; ++i)
+  {
+    for (int j = 0; j < num_dimensions; ++j)
+    {
+      aux = LONGSWAP(*((int *) &((*buffer)[i][j])));
+      (*buffer)[i][j] = *((float *)&aux);
+    }
+  }
 
   // TODO: valgrind says "Syscall param write(buf) points to uninitialised byte(s)" change this !!!
   for (int i = 0; i < index_to_last_trajectory_point_; ++i)
@@ -803,7 +816,23 @@ bool Trajectory::writeToCLMCFile(const std::string& file_name,
       Logger::logPrintf("Cannot fwrite trajectory data.", Logger::ERROR);
       return false;
     }
+  } 
+
+  /*! // output to a txt file
+  std::ofstream out(file_name.c_str());
+  if (out.is_open())
+  {
+     // There are several other ways to code this loop.
+     for(int i = 0; i < index_to_last_trajectory_point_; i++)
+     {
+        for (int j = 0; j < num_dimensions; j++)
+        {
+           out << (*buffer)[i][j] << " ";
+        }
+        out << std::endl;
+     }
   }
+  out.close(); */
   fclose(fp);
 
   return true;

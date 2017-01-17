@@ -478,12 +478,12 @@ bool TrajectoryUtilities::resample(dmp_lib::Trajectory& trajectory,
 
   if(compute_derivatives)
   {
-    ROS_VERIFY(resampled_trajectory.computeDerivatives());
-    //ROS_VERIFY(trajectory.computeDerivatives());
+    //ROS_VERIFY(resampled_trajectory.computeDerivatives());
+    ROS_VERIFY(trajectory.computeDerivatives());
   }
 
   // set trajectory
-  trajectory = resampled_trajectory;
+  //trajectory = resampled_trajectory;
 
   /*! // access the trajectory postions
   ROS_INFO("START PRINTING");

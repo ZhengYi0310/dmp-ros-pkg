@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
-#include <Eigen/Core>
+#include <eigen3/Eigen/Core>
 
 // local include
 #include "dmp_lib/status.h"
@@ -326,6 +326,9 @@ public:
                              const int trajectory_dimension,
                              double& velocity) const;
 
+  bool getTrajectoryVelocity(const int trajectory_index,
+                             Eigen::VectorXd& trajectory_velocities) const;
+
   /*!
    * @param trajectory_index
    * @param trajectory_dimension
@@ -335,6 +338,9 @@ public:
   bool getTrajectoryAcceleration(const int trajectory_index,
                                  const int trajectory_dimension,
                                  double& acceleration) const;
+
+  bool getTrajectoryAcceleration(const int trajectory_index,
+                                 Eigen::VectorXd& trajectory_accelerations) const;
 
   /*!
    * @return
@@ -740,6 +746,21 @@ inline bool Trajectory::getTrajectoryVelocity(const int trajectory_index,
   return true;
 }
 
+inline  bool getTrajectoryVelocity(const int trajectory_index,
+                             Eigen::VectorXd& trajectory_velocities) const
+{
+  if (!check())
+  {
+    return false;
+  }
+  if (!isWithinLengthBoundaries(trajectory_index))
+  {
+    return false;
+  }
+  trajectory_velocities = trajectory_velocities_.row(trajectory_index);
+  return true;
+}
+
 inline bool Trajectory::getTrajectoryAcceleration(const int trajectory_index,
                                                   const int trajectory_dimension,
                                                   double& acceleration) const
@@ -759,6 +780,22 @@ inline bool Trajectory::getTrajectoryAcceleration(const int trajectory_index,
   }
 
   acceleration = trajectory_accelerations_(trajectory_index, trajectory_dimension);
+  return true;
+}
+
+bool getTrajectoryAcceleration(const int trajectory_index,
+                                 Eigen::VectorXd& trajectory_accelerations) const
+{
+
+  if (!check())
+  {
+    return false;
+  }
+  if (!isWithinLengthBoundaries(trajectory_index))
+  {
+    return false;
+  }
+  trajectory_accelerations = trajectory_accelerations_.row(trajectory_index);
   return true;
 }
 

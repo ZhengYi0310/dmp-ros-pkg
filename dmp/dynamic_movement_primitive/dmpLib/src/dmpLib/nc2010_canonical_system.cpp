@@ -24,8 +24,8 @@ namespace dmp_lib
         Logger::logPrintf("NC2010CanonicalSystem assignment.", Logger::DEBUG);
 
         // first assign all memeber variables
-        (Utilities<NC2010CanonicalSystemParameters>::assign(parameters_, nc2010cs.parameters_));
-        (Utilities<NC2010CanonicalSystemState>::assign(state_, nc2010cs.state_));
+        assert(Utilities<NC2010CanonicalSystemParameters>::assign(parameters_, nc2010cs.parameters_));
+        assert(Utilities<NC2010CanonicalSystemState>::assign(state_, nc2010cs.state_));
 
         // then assign base class variables
         CanonicalSystemBase::parameters_ = parameters_;
@@ -40,8 +40,8 @@ namespace dmp_lib
         Logger::logPrintf("Initializing NC2010 canonical system.", Logger::DEBUG);
 
         // first set all memeber variables
-        (Utilities<NC2010CanonicalSystemParameters>::assign(parameters_, parameters));
-        (Utilities<NC2010CanonicalSystemState>::assign(state_, state));
+        assert(Utilities<NC2010CanonicalSystemParameters>::assign(parameters_, parameters));
+        assert(Utilities<NC2010CanonicalSystemState>::assign(state_, state));
 
         // then initialize base class variables
         return CanonicalSystemBase::initialize(parameters_, state_);
