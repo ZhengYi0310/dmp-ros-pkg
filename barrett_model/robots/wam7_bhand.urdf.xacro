@@ -1,0 +1,119 @@
+<robot name="wam"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Includea all the WAM stuff -->
+  <xacro:include filename="$(find barrett_model)/models/wam_top.urdf.xacro"/> 
+
+  <!-- Root link is in the world frame-->
+  <xacro:property name="width" value="0.0889" />
+  <xacro:property name="height" value="0.0492125" />
+  <link name="rack1">
+    <visual>
+      <geometry>
+        <box size="1.831975 ${width} ${height}"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="rack2">
+    <visual>
+      <geometry>
+        <box size="0.6334125 ${width} ${height}"/>
+      </geometry>
+      <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name="rack3">
+    <visual>
+      <geometry>
+        <box size="0.6334125 ${width} ${height}"/>
+      </geometry>
+      <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name="rack4">
+    <visual>
+      <geometry>
+        <box size="1.2446 ${width} ${height}"/>
+      </geometry>
+      <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name="rack5">
+    <visual>
+      <geometry>
+        <box size="1.905 ${width} ${width}"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 0.9525"/>
+    </visual>
+  </link>
+
+  <link name="rack6">
+    <visual>
+      <geometry>
+        <box size="1.025525 0.3175 0.32385"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name ="left_wam_rack" />
+  <link name ="right_wam_rack" />
+
+  <joint name="rack1_to_rack2" type="fixed">
+    <parent link="rack1"/>
+    <child link="rack2"/>
+    <origin xyz="0.8778875 0 -0.0492125"/>
+  </joint>
+
+  <joint name="rack1_to_rack3" type="fixed">
+    <parent link="rack1"/>
+    <child link="rack3"/>
+    <origin xyz="-0.8778875 0 -0.0492125"/>
+  </joint>
+
+  <joint name="rack1_to_rack4" type="fixed">
+    <parent link="rack1"/>
+    <child link="rack4"/>
+    <origin xyz="0 0.2794 -0.0492125"/>
+  </joint>
+
+  <joint name="rack1_to_rack5" type="fixed">
+    <parent link="rack1"/>
+    <child link="rack5"/>
+    <origin xyz="0 0 0.0492125"/>
+  </joint>
+
+  <joint name="rack5_to_rack6" type="fixed">
+    <parent link="rack5"/>
+    <child link="rack6"/>
+    <origin xyz="0 0 1.2239625"/>
+  </joint>
+
+  <joint name="rack6_to_leftwam" type="fixed">
+    <parent link="rack6"/>
+    <child link="left_wam_rack"/>
+    <origin xyz="0.2936875 0.15875 0"/>
+  </joint>
+
+  <joint name="rack6_to_righttwam" type="fixed">
+    <parent link="rack6"/>
+    <child link="right_wam_rack"/>
+    <origin xyz="-0.2936875 0.15875 0"/>
+  </joint>
+
+  <!-- 7-DOF Wam -->
+
+  <!-- right wam -->
+  <xacro:wam_right prefix="right_wam" parent_link="right_wam_rack" xyz="0.0 0.0 0" rpy="-1.57075 0 0" />
+  <xacro:wam_wrist_right prefix="right_wam"/>
+  <!-- <xacro:bhand prefix="right_wam/bhand" parent_link="right_wam/wrist_palm_link" xyz="0 0 0.06" rpy="0 0 0"/> -->
+
+  <!-- left wam -->
+  <!-- <xacro:wam_left prefix="left_wam" parent_link="left_wam_rack" xyz="0.0 0.0 0" rpy="-1.57075 3.1415 0" /> -->
+  <!-- <xacro:wam_wrist_left prefix="left_wam"/> -->
+  <!-- <xacro:bhand prefix="left_wam/bhand" parent_link="left_wam/wrist_palm_link" xyz="0 0 0.06" rpy="0 0 0"/> -->
+</robot>

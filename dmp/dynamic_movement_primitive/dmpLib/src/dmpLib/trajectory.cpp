@@ -20,6 +20,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <iostream>
+#include <algorithm>
 
 // local include
 #include "dmp_lib/trajectory.h"
@@ -373,6 +375,45 @@ bool Trajectory::setMinJerk(const std::vector<std::vector<double> >& waypoints, 
     eigen_waypoints.push_back(waypoint);
   }
   return setMinJerk(waypoints, durations);
+}
+
+bool Trajectory::readFromCSVFile(const string& file_name,
+                                  const bool positions_only)
+{
+    std::vector<std::string> empty;
+    return readFromCSVFile(file_name, empty, positions_only, false);
+    //return true;
+}
+
+bool Trajectory::readFromCSVFile(const string& file_name,
+                                 const vector<string>& variable_names,
+                                 const bool positions_only,
+                                 const bool use_variable_names)
+{
+    string line;
+    ifstream myfile(file_name.c_str());
+    if (myfile == NULL)
+    {
+        Logger::logPrintf("Cannot open file >%s<.", Logger::ERROR, file_name.c_str());
+        return false;
+    }
+
+    int num_of_lines = 0;
+    while (!myfile.eof())
+    {
+        double time_stamp;
+        myfile >> time_stamp;
+        
+        getline(myfile, line);
+        line.erase(std::remove(line.begin(), line.end(), ','), line.end());
+        //cout << line << endl;
+        cout << time_stamp << endl;
+        break;
+        num_of_lines++;
+    }
+    cout << num_of_lines;
+    myfile.close();
+    return true;
 }
 
 bool Trajectory::readFromCLMCFile(const string& file_name,

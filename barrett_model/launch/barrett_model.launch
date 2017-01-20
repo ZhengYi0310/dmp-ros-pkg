@@ -1,0 +1,20 @@
+<launch>
+   <arg name="db" default="false" />
+  
+   <!-- By default, we are not in debug mode -->
+   <arg name="debug" default="false" />
+
+   <!-- Load the URDF/Xacro model of our robot -->
+   <include file="$(find barrett_model)/launch/planning_context.launch">
+      <arg name="load_robot_description" value="true"/>
+   </include>
+
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/> 
+   </node>
+
+   <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+ 
+</launch>
+

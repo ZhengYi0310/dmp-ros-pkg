@@ -1,0 +1,39 @@
+<package>
+  <name>policy_library</name>
+  <version>0.0.0</version>
+  <description>the policy_library package</description>
+  <author>Peter Pastor</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/dynamic_movement_primitives</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rosbag</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>usc_utilities</build_depend>
+  <build_depend>dynamic_movement_primitive</build_depend>
+  <build_depend>dynamic_movement_primitive_utilities</build_depend>
+  <build_depend>policy_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <run_depend>rosbag</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>usc_utilities</run_depend>
+  <run_depend>dynamic_movement_primitive</run_depend>
+  <run_depend>dynamic_movement_primitive_utilities</run_depend>
+  <run_depend>policy_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>message_runtime</run_depend>
+
+  
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/srv/cpp -I${prefix}/msg/cpp" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lpolicy_library"/>
+  </export>
+  
+</package>
+
+

@@ -1,0 +1,10 @@
+<robot name="wam"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="world">
+    <visual>
+      <geometry>
+        <box size="0.6 .2 .1"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

@@ -1,0 +1,8 @@
+<launch>
+        <param name="use_gui" value="True" />
+        <param name="robot_description" command="cat $(find wam_description)/urdf/wam.xml" />
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+        <node name="joint_state_publisher" pkg="joint_state_publisher"
+type="joint_state_publisher" />
+        
+</launch>

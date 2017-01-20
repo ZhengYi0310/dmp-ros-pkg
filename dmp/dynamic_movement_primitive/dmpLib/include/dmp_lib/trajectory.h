@@ -201,6 +201,28 @@ public:
    * @param positions_only
    * @return True on success, otherwise False
    */
+  bool readFromCSVFile(const std::string& file_name,
+                       const bool positions_only = false);
+
+
+  /*! Initializes the trajectory from the File pointed to by the provided file_name
+   * @param file_name
+   * @param variable_names
+   * @param positions_only
+   * @param use_variable_names If this is set to false, variable names parameter is ignored and ALL variable names are read from file
+   * @return True on success, otherwise False
+   */
+  bool readFromCSVFile(const std::string& file_name,
+                        const std::vector<std::string>& variable_names,
+                        const bool positions_only = false,
+                        const bool use_variable_names = true);
+  
+
+  /*! Initializes the trajectory from the File pointed to by the provided file_name
+   * @param file_name
+   * @param positions_only
+   * @return True on success, otherwise False
+   */
   bool readFromCLMCFile(const std::string& file_name,
                         const bool positions_only = false);
 

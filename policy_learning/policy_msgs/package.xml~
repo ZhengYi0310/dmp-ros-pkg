@@ -1,0 +1,23 @@
+<package>
+  <name>policy_msgs</name>
+  <version>0.0.0</version>
+  <description>the policy_msgs package</description>
+  <author>Peter Pastor</author>
+  <maintainer email="robot@todo.todo">robot</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/dynamic_movement_primitives</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>genmsg</build_depend>
+
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>message_generation</run_depend>
+  <run_depend>genmsg</run_depend>
+</package>
+
+
