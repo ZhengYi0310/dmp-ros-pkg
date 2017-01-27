@@ -51,7 +51,7 @@ include_directories(${Bullet_INCLUDE_DIRS})
 #)
 
 catkin_package(INCLUDE_DIRS include
-               #LIBRARIES ${PROJECT_NAME}
+               LIBRARIES ${PROJECT_NAME}
                CATKIN_DEPENDS roscpp geometry_msgs std_srvs actionlib actionlib_msgs usc_utilities dmp_behavior_actions tf angles task_msgs skill_library dynamic_movement_primitive dynamic_movement_primitive_utilities 
                DEPENDS Bullet)
 
@@ -73,5 +73,11 @@ add_executable(test_dmp
 )
 target_link_libraries(test_dmp ${catkin_LIBRARIES})
 add_dependencies(test_dmp ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(learning_from_demonstration_client
+	src/learning_from_demonstration_client_node.cpp
+)
+target_link_libraries(learning_from_demonstration_client ${catkin_LIBRARIES})
+add_dependencies(learning_from_demonstration_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 #target_link_libraries(example ${PROJECT_NAME})

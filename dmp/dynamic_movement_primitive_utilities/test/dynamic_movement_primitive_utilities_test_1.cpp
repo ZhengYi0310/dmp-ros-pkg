@@ -112,7 +112,7 @@ TEST(dmp_learner_tests, learnJointSpaceDMP)
     // setup dmp, propagate full and write out trajectory containing 1000 samples to file.
     EXPECT_TRUE(nc2010_dmp_copy->setup());
     dmp_lib::Trajectory rollout;
-    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout, initial_duration * 1.2, 2388 * 1.2));
+    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout, initial_duration, trajectory.getNumContainedSamples()));
     EXPECT_TRUE(rollout.writeToCLMCFile(package_path + rel_rollout_joint_file_name));
 
     /*! // setup dmp, propagate full and write output trajectory containing 2000 samples to file.
@@ -134,7 +134,7 @@ TEST(dmp_learner_tests, learnJointSpaceDMP)
     }
     EXPECT_TRUE(nc2010_dmp_copy->changeGoal(new_goal));
     dmp_lib::Trajectory rollout_test_2;
-    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout_test_2, initial_duration * 1.2, 2388 * 1.2));
+    EXPECT_TRUE(nc2010_dmp_copy->propagateFull(rollout_test_2, initial_duration * 1.2, trajectory.getNumContainedSamples()));
     EXPECT_TRUE(rollout_test_2.writeToCLMCFile(package_path + rel_rollout_joint_file_name_test_2)); 
 
     trajectory_msgs::JointTrajectory JointTrajectory;

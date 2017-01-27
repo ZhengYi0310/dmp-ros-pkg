@@ -25,7 +25,7 @@ using namespace skill_library;
 
 namespace dmp_behaviors
 {
-    LearningFromDemonstration::LearningFromDemonstration(ros::NodeHandle& node_handle, const std::string& action_name) : node_handle_(node_handle), action_server_(ros::NodeHandle("/Behaviors"), action_name, boost::bind(&LearningFromDemonstration::execute, this, _1), false)
+    LearningFromDemonstration::LearningFromDemonstration(ros::NodeHandle& node_handle, const std::string& action_name) : node_handle_(node_handle), action_server_(ros::NodeHandle(""), action_name, boost::bind(&LearningFromDemonstration::execute, this, _1), false)
     {
         ROS_VERIFY(dmp_learner_utilities_.initialize(node_handle_));
     }
@@ -114,6 +114,7 @@ namespace dmp_behaviors
         skill_library::Affordance affordance;
         affordance.dmp = dmp_utilities_msg;
         affordance.object = goal->object;
+        affordance.object.name = "no_object";
         affordance.task = goal->task;
 
         addAffordance add_affordance_service;

@@ -1,0 +1,103 @@
+/*************************************************************************
+	> File Name: learning_from_demonstration_client.cpp
+	> Author: Yi Zheng 
+	> Mail: hczhengcq@gmail.com
+	> Created Time: Tue 24 Jan 2017 10:41:42 AM PST
+ ************************************************************************/
+#ifndef _LEARNING_FROM_DEMONSTRATION_CLIENT_H
+#ifndef _LEARNING_FROM_DEMONSTRATION_CLIENT_H
+// system includes 
+#include <sstream>
+#include <ros/ros.h>
+#include <ros/package.h>
+
+#include <usc_utilities/param_server.h>
+#include <usc_utilities/assert.h>
+#include <usc_utilities/file_io.h>
+#include <robot_info/robot_info_init.h>
+
+#include <skill_library/getAffordance.h>
+#include <skill_library/Affordance.h>
+
+#include <dynamic_movement_primitive_utilities/dynamic_movement_primitive_utilities.h>
+#include <dynamic_movement_primitive_utilities/dynamic_movement_primitive_learner.h>
+#include <dynamic_movement_primitive_utilities/trajectory_utilities.h>
+
+#include <Eigen/Eigen>
+#include <trajectory_msgs/JointTrajectory.h>
+
+#include <actionlib/client/simple_action_client.h>
+#include <actionlib/client/terminal_state.h>
+
+#include <dmp_behavior_actions/LearningFromDemonstrationAction.h>
+
+// local includes 
+#include "dmp_behaviors/learning_from_demonstration.h"
+##include "dmp_bahaviors/behavior_utilities.h"
+
+using namespace dmp_behavior_actions;
+using namespace skill_library;
+
+namespace dmp_behaviors
+{
+    class LearningFromDemonstrationClient
+    {
+        public:
+            
+            typedef actionlib::SimpleActionClient<dmp_behavior_actions::LearningFromDemonstrationAction> ActionClient
+        LearningFromDemonstrationClient(ros::NodeHandle& node_handle, const std::string& action_name, const std::string& joint_states_bag_file_name);
+        virtual ~LearningFromDemonstrationClient() {};
+
+        void waitForServer();
+        void sendGoal();
+        void LearningFromDemonstrationClient(const actionlib::SimpleActionClientGoalState& state,
+                                             const LearningFromDemonstrationAction)
+
+        private:
+            
+            ros::NodeHandle node_handle_;
+            
+            ActionClient action_client_;
+            
+            ros::ServiceClient get_affordance_service_client_;
+
+            trajectory_msgs::JointTrajectory roll_out_trajectory_;
+            trajectory_msgs::JointTrajectory demonstration_trajectory_;
+
+            std::string joint_states_bag_file_name_;
+              
+    };
+
+    LearningFromDemonstrationClient::LearningFromDemonstrationClient(ros::NodeHandle& node_handle, const std::string& action_name, const std::string& joint_states_bag_file_name) : node_handle_(node_handle), action_client_(action_name, true), joint_states_bag_file_name_(joint_states_bag_file_name) {}
+
+    void LearningFromDemonstrationClient::waitForServer()
+    {
+        ROS_INFO("Waiting for action server to start.");
+        action_client_.waitForServer();
+        ROS_INFO("Action server started, sending goal.");
+    }
+
+    void LearningFromDemonstrationClient::sendGoal()
+    {
+        LearningFromDemonstrationGoal goal;
+        
+        goal.joint_states_bag_file_name = joint_states_bag_file_name_;
+        goal.robot_part_names+from_trajectory.push_back("RIGHT_ARM");
+        goal.type = 1;
+
+        action_client_.sendGoal(goal, boost::bind(&LearningFromDemonstrationClient::GoalCallback, this, _1, _2), Client::SimpleActiveCallback, Client::SimpleFeedbackCallback());
+    }
+
+    void LearningFromDemonstrationClient::sendGoal(const actionlib::SimpleClientGoalState& state,
+                                                   LearningFromDemonstrationResultConstPtr& result)
+    {
+        ROS_INFO("Finished in state [%s]", state.toString().c_str());
+        ROS_INFO("Result status: %i", result->result;
+        ros::shutdown();
+    }
+
+
+}
+#endif
+
+

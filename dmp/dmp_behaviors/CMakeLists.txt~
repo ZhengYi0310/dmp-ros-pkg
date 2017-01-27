@@ -69,9 +69,15 @@ add_dependencies(learning_from_demonstration ${${PROJECT_NAME}_EXPORTED_TARGETS}
 
 add_executable(test_dmp
 	src/test_dmp_node.cpp
-	src/test_dmp_1.cpp
+	src/test_dmp.cpp
 )
 target_link_libraries(test_dmp ${catkin_LIBRARIES})
 add_dependencies(test_dmp ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(learning_from_demonstration_client
+	src/learning_from_demonstration_client_node.cpp
+)
+target_link_libraries(learning_from_demonstration_client ${catkin_LIBRARIES})
+add_dependencies(learning_from_demonstration_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 #target_link_libraries(example ${PROJECT_NAME})
